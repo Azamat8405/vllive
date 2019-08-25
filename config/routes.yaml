@@ -4,3 +4,6 @@
 sources_list:
   path: /sources
   controller: App\Controller\SourcesController::list
+admin_dashboard:
+  path: /admin
+  controller: App\Controller\AdminController::dashboard
