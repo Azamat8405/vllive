@@ -1,9 +1,15 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+main:
+  path: /
+  controller: App\Controller\IndexController::index
 sources_list:
   path: /sources
   controller: App\Controller\SourcesController::list
 admin_dashboard:
   path: /admin
   controller: App\Controller\AdminController::dashboard
+calc:
+  path: /calc
+  controller: App\Controller\CalcController::index

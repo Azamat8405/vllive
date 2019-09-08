@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <head>
-        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        {% block stylesheets %}
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+{#        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>#}
+{#        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>#}
+{#        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>#}
     </head>
 </head>
 <body>
@@ -73,5 +78,9 @@
             document.getElementById("leftMenu")
         );
     </script>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 </body>
 </html>
