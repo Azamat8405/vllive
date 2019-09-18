@@ -21,10 +21,10 @@ class CalcController
 				<td>Накоплено</td>
 			</tr>';
 
-        $credit = 4000000; // стоимость квартиры
+        $credit = 4500000; // стоимость квартиры
         $date = time() /* + 31536000 + 18144000*/;
 
-        $nakopleno = 363000; // берем кредит только когда собиру определенную сумму.
+        $nakopleno = 1215000; // берем кредит только когда собиру определенную сумму.
 
         // 260 вычет базовый
         // 390 вычет по процентам
@@ -33,7 +33,7 @@ class CalcController
         $month = 180; // 180 - 15 лет
         $credit_tmp = $credit;
         $i = 10/12/100;
-        $plus_platej = 50000; // дополнительно к каждому платежу
+        $plus_platej = 0;//50000; // дополнительно к каждому платежу
         $proc = false;
         $pl = '';
         $kv = 25000;
@@ -42,6 +42,7 @@ class CalcController
         $count_years = 0;
         $proc_sum = 0;
         $vichet = 0;
+        $platej2 = true;
 
         $summa = 0;
         $kv_perepl = 0;
@@ -97,10 +98,17 @@ class CalcController
                 $k = ($i * pow((1 + $i), $month)) / (pow((1 + $i), $month) - 1);
                 $pl =  $k * $credit_tmp;
 
+
                 // какая часть платежа является процентом?
                 $proc = ($credit*10/100/12);
                 $proc_sum += $proc;
 
+                if($platej2){
+                    $pl_tmp = $pl / 2;
+                    $credit -= ($pl_tmp - $proc);
+                } else {
+                    $credit -= ($pl - $proc);
+                }
                 // платеж минус процентная часть получается сумма которая идет в погашение основного долга
                 $credit -= ($pl - $proc);
                 $credit -= $plus_platej;
